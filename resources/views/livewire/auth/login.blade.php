@@ -44,7 +44,7 @@ new #[Layout('components.layouts.auth')] class extends Component {
 
     public function loginAsDeveloper(): void
     {
-        Auth::login(\App\Models\User::firstWhere('name', 'Developer'));
+        Auth::login(\App\Models\User::first());
 
         $this->redirectIntended(default: route('dashboard', absolute: false), navigate: true);
     }
