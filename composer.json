@@ -13,7 +13,9 @@
         "laravel/framework": "^12.0",
         "laravel/tinker": "^2.10.1",
         "livewire/flux": "^2.0",
-        "livewire/volt": "^1.6.7"
+        "livewire/flux-pro": "^2.0",
+        "livewire/volt": "^1.6.7",
+        "idkwhoami/flux-tables": "*"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",
@@ -74,5 +76,15 @@
         }
     },
     "minimum-stability": "dev",
-    "prefer-stable": true
+    "prefer-stable": true,
+    "repositories": {
+        "flux-tables": {
+            "type": "path",
+            "url": "./packages/flux-tables"
+        },
+        "flux-pro": {
+            "type": "composer",
+            "url": "https://composer.fluxui.dev"
+        }
+    }
 }

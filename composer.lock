@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "410e71e4f3f67320d5e0f8498a307546",
+    "content-hash": "6c3fe8375e1cb1bde989ff21cca9911c",
     "packages": [
         {
             "name": "brick/math",
@@ -1055,6 +1055,84 @@
             "time": "2025-02-03T10:55:03+00:00"
         },
         {
+            "name": "idkwhoami/flux-tables",
+            "version": "2.1.1",
+            "dist": {
+                "type": "path",
+                "url": "./packages/flux-tables",
+                "reference": "323d26849903e740108ee68da2a16b3c23469c1d"
+            },
+            "require": {
+                "livewire/flux": "^2.0",
+                "livewire/flux-pro": "^2.0",
+                "php": "^8.3"
+            },
+            "require-dev": {
+                "illuminate/support": "^11.41",
+                "larastan/larastan": "^2.9",
+                "laravel/pint": "^1.20",
+                "nunomaduro/collision": "^8.1.1||^7.10.0",
+                "orchestra/testbench": "^9.9",
+                "pestphp/pest": "^3.7",
+                "pestphp/pest-plugin-arch": "^3.0",
+                "pestphp/pest-plugin-laravel": "^3.1",
+                "phpstan/extension-installer": "^1.3",
+                "phpstan/phpstan": "^1.12",
+                "phpstan/phpstan-deprecation-rules": "^1.1",
+                "phpstan/phpstan-phpunit": "^1.3"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Idkwhoami\\FluxTables\\FluxTablesServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Idkwhoami\\FluxTables\\": "src/"
+                }
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "Idkwhoami\\FluxTables\\Tests\\": "tests/"
+                }
+            },
+            "scripts": {
+                "pretty": [
+                    "./vendor/bin/pint --dirty"
+                ],
+                "pint": [
+                    "./vendor/bin/pint"
+                ],
+                "analyse": [
+                    "./vendor/bin/phpstan analyse --memory-limit 4G"
+                ],
+                "test": [
+                    "./vendor/bin/pest"
+                ]
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "idkwhoami"
+                }
+            ],
+            "description": "This package provides a reusable, configurable table livewire component styled using Flux",
+            "homepage": "https://github.com/idkwhoami/flux-tables",
+            "keywords": [
+                "Idkwhoami",
+                "flux-tables",
+                "laravel"
+            ],
+            "transport-options": {
+                "relative": true
+            }
+        },
+        {
             "name": "laravel/framework",
             "version": "v12.0.1",
             "source": {
@@ -2068,6 +2146,63 @@
                 "source": "https://github.com/livewire/flux/tree/v2.0.2"
             },
             "time": "2025-02-21T13:00:37+00:00"
+        },
+        {
+            "name": "livewire/flux-pro",
+            "version": "2.0.2",
+            "dist": {
+                "type": "zip",
+                "url": "https://composer.fluxui.dev/download/9e43e623-b213-4ff1-a6a9-32c9aad82212/flux-pro-2.0.2.zip",
+                "reference": "e6a67a9d1982a34565880b8f7d4aabc17197d6f7",
+                "shasum": "7b9453b5db0a87fc90bceb49196319549ea04fe8"
+            },
+            "require": {
+                "illuminate/console": "^10.0|^11.0|^12.0",
+                "illuminate/support": "^10.0|^11.0|^12.0",
+                "illuminate/view": "^10.0|^11.0|^12.0",
+                "laravel/prompts": "^0.1.24|^0.2|^0.3",
+                "livewire/flux": "2.0.2|dev-main",
+                "livewire/livewire": "^3.5.19",
+                "php": "^8.1",
+                "symfony/console": "^6.0|^7.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "aliases": {
+                        "Flux": "FluxPro\\FluxPro"
+                    },
+                    "providers": [
+                        "FluxPro\\FluxProServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "files": [
+                    "src/helpers.php"
+                ],
+                "psr-4": {
+                    "FluxPro\\": "src/"
+                }
+            },
+            "license": [
+                "proprietary"
+            ],
+            "authors": [
+                {
+                    "name": "Caleb Porzio",
+                    "email": "calebporzio@gmail.com"
+                }
+            ],
+            "description": "The pro version of Flux, the official UI component library for Livewire.",
+            "keywords": [
+                "components",
+                "flux",
+                "laravel",
+                "livewire",
+                "ui"
+            ],
+            "time": "2025-02-21T13:30:12+00:00"
         },
         {
             "name": "livewire/livewire",
