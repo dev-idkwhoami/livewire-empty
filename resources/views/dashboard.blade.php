@@ -40,17 +40,17 @@
                         ->property('deleted_at'),
                     \Idkwhoami\FluxTables\Concretes\Column\ActionColumn::make('actions')
                         ->actions([
-                            Idkwhoami\FluxTables\Abstracts\Action\Action::make('open')
+                            Idkwhoami\FluxTables\Abstracts\Action\ModalAction::make('open')
                                 ->label('Open')
                                 ->icon('arrow-top-right-on-square')
-                                ->action(\Idkwhoami\FluxTables\Concretes\Action\DeleteAction::class),
-                            Idkwhoami\FluxTables\Abstracts\Action\Action::make('delete')
+                                ->link()
+                                ->component('user-delete-confirmation'),
+                            Idkwhoami\FluxTables\Abstracts\Action\DirectAction::make('delete')
                                 ->visible(fn(\Illuminate\Database\Eloquent\Model $model) => auth()->user()->isNot($model) && !$model->deleted_at)
                                 ->label('Delete')
                                 ->icon('trash-2')
-                                ->link(false)
                                 ->action(\Idkwhoami\FluxTables\Concretes\Action\DeleteAction::class),
-                            Idkwhoami\FluxTables\Abstracts\Action\Action::make('restore')
+                            Idkwhoami\FluxTables\Abstracts\Action\DirectAction::make('restore')
                                 ->visible(fn(\Illuminate\Database\Eloquent\Model $model) => auth()->user()->isNot($model) && $model->deleted_at)
                                 ->label('Restore')
                                 ->icon('rotate-ccw')
