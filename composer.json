@@ -80,7 +80,7 @@
     "repositories": {
         "flux-tables": {
             "type": "path",
-            "url": "./packages/flux-tables"
+            "url": "E:\\PHP\\Opensource\\flux-tables"
         },
         "flux-pro": {
             "type": "composer",

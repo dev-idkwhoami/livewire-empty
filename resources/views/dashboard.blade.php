@@ -31,6 +31,7 @@
                         ->searchable()
                         ->property('name'),
                     \Idkwhoami\FluxTables\Concretes\Column\DatetimeColumn::make('created')
+                        ->humanReadable()
                         ->label("Created")
                         ->sortable()
                         ->property('created_at'),
