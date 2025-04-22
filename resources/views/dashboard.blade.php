@@ -23,6 +23,11 @@
                     \Idkwhoami\FluxTables\Concretes\Filter\DateRangeFilter::make('created')
                         ->property('created_at')
                         ->label('Created'),
+                    \Idkwhoami\FluxTables\Concretes\Filter\ValuePresentFilter::make('email_verified')
+                        ->property('email_verified_at')
+                        ->label('Exclude unverified')
+                        ->description('Hide all users that haven\'t verified their email address.')
+                        ->pillContent('Unverified excluded'),
                 ];
 
                 $columns = [
@@ -35,6 +40,10 @@
                         ->label("Created")
                         ->sortable()
                         ->property('created_at'),
+                    \Idkwhoami\FluxTables\Concretes\Column\DatetimeColumn::make('email_verified')
+                        ->label("Email Verified At")
+                        ->sortable()
+                        ->property('email_verified_at'),
                     \Idkwhoami\FluxTables\Concretes\Column\DatetimeColumn::make('deleted')
                         ->label("Deleted")
                         ->default('n/a')
@@ -60,7 +69,7 @@
                 ];
             @endphp
 
-            <livewire:flux-simple-table title="Users" :model="\App\Models\User::class" :default-toggled-columns="['created']" :$filters :$columns />
+            <livewire:flux-simple-table create="create-user" title="Users" :model="\App\Models\User::class" :default-toggled-columns="['created']" :$filters :$columns />
 
         </div>
     </div>
