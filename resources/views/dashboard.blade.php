@@ -28,12 +28,16 @@
                         ->label('Exclude unverified')
                         ->description('Hide all users that haven\'t verified their email address.')
                         ->pillContent('Unverified excluded'),
+                    \Idkwhoami\FluxTables\Concretes\Filter\BooleanFilter::make('banned')
+                        ->property('banned'),
                 ];
 
                 $columns = [
-                    \Idkwhoami\FluxTables\Concretes\Column\TextColumn::make('name')
+                    \Idkwhoami\FluxTables\Concretes\Column\ComponentColumn::make('name')
                         ->label('Username')
+                        ->sortable()
                         ->searchable()
+                        ->component('columns.user-name-input')
                         ->property('name'),
                     \Idkwhoami\FluxTables\Concretes\Column\DatetimeColumn::make('created')
                         ->humanReadable()
@@ -44,6 +48,11 @@
                         ->label("Email Verified At")
                         ->sortable()
                         ->property('email_verified_at'),
+                    \Idkwhoami\FluxTables\Concretes\Column\ComponentColumn::make('banned')
+                        ->label('Banned')
+                        ->sortable()
+                        ->component('columns.user-banned-checkbox')
+                        ->property('banned'),
                     \Idkwhoami\FluxTables\Concretes\Column\DatetimeColumn::make('deleted')
                         ->label("Deleted")
                         ->default('n/a')
