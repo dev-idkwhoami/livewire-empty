@@ -71,6 +71,7 @@
 
             <livewire:flux-simple-table create="create-user" title="Users" :model="\App\Models\User::class" :default-toggled-columns="['created']" :$filters :$columns />
 
+            {{--@dump(\Illuminate\Support\Facades\Context::allHidden())--}}
         </div>
     </div>
 </x-layouts.app>
