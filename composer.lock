@@ -1056,11 +1056,11 @@
         },
         {
             "name": "idkwhoami/flux-tables",
-            "version": "2.1.10",
+            "version": "2.1.11",
             "dist": {
                 "type": "path",
                 "url": "E:/PHP/Opensource/flux-tables",
-                "reference": "2d3b497669626b6c485e37a0f78a555098ef18cc"
+                "reference": "ac84b406c2a3986dc7ba695d417c4acaa13b2ebb"
             },
             "require": {
                 "livewire/flux": "^2.0",

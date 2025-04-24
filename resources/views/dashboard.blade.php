@@ -48,10 +48,8 @@
                         ->label("Email Verified At")
                         ->sortable()
                         ->property('email_verified_at'),
-                    \Idkwhoami\FluxTables\Concretes\Column\ComponentColumn::make('banned')
+                    \Idkwhoami\FluxTables\Concretes\Column\BooleanColumn::make('banned')
                         ->label('Banned')
-                        ->sortable()
-                        ->component('columns.user-banned-checkbox')
                         ->property('banned'),
                     \Idkwhoami\FluxTables\Concretes\Column\DatetimeColumn::make('deleted')
                         ->label("Deleted")
