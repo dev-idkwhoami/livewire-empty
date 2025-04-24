@@ -44,6 +44,11 @@
                         ->label("Created")
                         ->sortable()
                         ->property('created_at'),
+                    \Idkwhoami\FluxTables\Concretes\Column\TextColumn::make('posts')
+                        ->count()
+                        ->label('Posts')
+                        ->relation('posts')
+                        ->property('posts_count'),
                     \Idkwhoami\FluxTables\Concretes\Column\DatetimeColumn::make('email_verified')
                         ->label("Email Verified At")
                         ->sortable()
@@ -76,8 +81,36 @@
                 ];
             @endphp
 
-            <livewire:flux-simple-table create="create-user" title="Users" :model="\App\Models\User::class" :default-toggled-columns="['created']" :$filters :$columns />
+            <livewire:flux-simple-table page-name="up" create="create-user" title="Users" :model="\App\Models\User::class" :default-toggled-columns="['created']" :$filters :$columns />
 
+            {{--@dump(\Illuminate\Support\Facades\Context::allHidden())--}}
+        </div>
+        <div class="relative h-full flex-1 rounded-xl border border-neutral-200 dark:border-neutral-700 p-8">
+
+            @php
+                $filters = [
+                ];
+
+                $columns = [
+                    \Idkwhoami\FluxTables\Concretes\Column\TextColumn::make('name')
+                        ->label('Title')
+                        ->property('name'),
+                    \Idkwhoami\FluxTables\Concretes\Column\DatetimeColumn::make('created')
+                        ->humanReadable()
+                        ->label("Created")
+                        ->sortable()
+                        ->property('created_at'),
+                    \Idkwhoami\FluxTables\Concretes\Column\TextColumn::make('tags')
+                        ->count()
+                        ->label('Tags')
+                        ->property('tags_count')
+                        ->relation('tags'),
+                ];
+            @endphp
+
+            <livewire:flux-simple-table page-name="pp" title="Posts" :model="\App\Models\Post::class" :$filters :$columns />
+
+            {{--@dump(session()->all())--}}
             {{--@dump(\Illuminate\Support\Facades\Context::allHidden())--}}
         </div>
     </div>
