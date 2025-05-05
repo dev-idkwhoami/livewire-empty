@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire;
+namespace App\Livewire\User;
 
 use App\Models\User;
 use Flux\Flux;
@@ -33,6 +33,6 @@ class UserDeleteConfirmation extends Component
 
     public function render(): View
     {
-        return view('livewire.user-delete-confirmation');
+        return view('livewire.user.user-delete-confirmation');
     }
 }

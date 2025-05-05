@@ -62,11 +62,18 @@
                         ->property('deleted_at'),
                     \Idkwhoami\FluxTables\Concretes\Column\ActionColumn::make('actions')
                         ->actions([
+                            Idkwhoami\FluxTables\Abstracts\Action\DirectAction::make('open')
+                                ->access(fn(\App\Models\User $user, \Illuminate\Database\Eloquent\Model $value) => $user->isNot($value))
+                                ->label('Edit')
+                                ->icon('pencil')
+                                ->link()
+                                ->variant('ghost')
+                                ->action(\Idkwhoami\FluxTables\Concretes\Action\RouteAction::make('edit')->route('test.route')),
                             Idkwhoami\FluxTables\Abstracts\Action\ModalAction::make('open')
                                 ->label('Open')
                                 ->icon('arrow-top-right-on-square')
                                 ->link()
-                                ->component('user-delete-confirmation'),
+                                ->component('user.user-delete-confirmation'),
                             Idkwhoami\FluxTables\Abstracts\Action\DirectAction::make('delete')
                                 ->visible(fn(\Illuminate\Database\Eloquent\Model $model) => auth()->user()->isNot($model) && !$model->deleted_at)
                                 ->label('Delete')
@@ -94,6 +101,10 @@
                 $columns = [
                     \Idkwhoami\FluxTables\Concretes\Column\TextColumn::make('name')
                         ->label('Title')
+                        ->property('name'),
+                    \Idkwhoami\FluxTables\Concretes\Column\TextColumn::make('author')
+                        ->label('Author')
+                        ->relation('user')
                         ->property('name'),
                     \Idkwhoami\FluxTables\Concretes\Column\DatetimeColumn::make('created')
                         ->humanReadable()
