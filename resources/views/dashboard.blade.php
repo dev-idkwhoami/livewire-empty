@@ -68,7 +68,7 @@
                                 ->icon('pencil')
                                 ->link()
                                 ->variant('ghost')
-                                ->action(\Idkwhoami\FluxTables\Concretes\Action\RouteAction::make('edit')->route('test.route')),
+                                ->action(\Idkwhoami\FluxTables\Concretes\Action\RouteAction::make('edit')->route('test.route')->navigate()),
                             Idkwhoami\FluxTables\Abstracts\Action\ModalAction::make('open')
                                 ->label('Open')
                                 ->icon('arrow-top-right-on-square')
