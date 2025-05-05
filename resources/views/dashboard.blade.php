@@ -73,6 +73,7 @@
                                 ->label('Open')
                                 ->icon('arrow-top-right-on-square')
                                 ->link()
+                                ->variant('ghost')
                                 ->component('user.user-delete-confirmation'),
                             Idkwhoami\FluxTables\Abstracts\Action\DirectAction::make('delete')
                                 ->visible(fn(\Illuminate\Database\Eloquent\Model $model) => auth()->user()->isNot($model) && !$model->deleted_at)
