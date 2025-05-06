@@ -53,6 +53,17 @@
                         ->label("Email Verified At")
                         ->sortable()
                         ->property('email_verified_at'),
+                    \Idkwhoami\FluxTables\Concretes\Column\JsonColumn::make('preferences_users_pagination')
+                        ->label("Preferences Users Pagination")
+                        ->sortable()
+                        ->property('preferences')
+                        ->type(\Idkwhoami\FluxTables\Enums\JsonPropertyType::Integer)
+                        ->path('pagination.users'),
+                    \Idkwhoami\FluxTables\Concretes\Column\JsonColumn::make('preferences_locale')
+                        ->label("Preferences Locale")
+                        ->sortable()
+                        ->property('preferences')
+                        ->path('locale'),
                     \Idkwhoami\FluxTables\Concretes\Column\BooleanColumn::make('banned')
                         ->label('Banned')
                         ->property('banned'),
@@ -87,6 +98,8 @@
                                 ->operation(Idkwhoami\FluxTables\Concretes\Operation\RestoreOperation::make('restore')),
                         ]),
                 ];
+
+                /*session()->flush();*/
             @endphp
 
             @dump(session()->all())
@@ -122,7 +135,7 @@
                 ];
             @endphp
 
-            <livewire:flux-simple-table page-name="pp" title="Posts" :model="\App\Models\Post::class" :$filters :$columns />
+            {{--<livewire:flux-simple-table page-name="pp" title="Posts" :model="\App\Models\Post::class" :$filters :$columns />--}}
 
             {{--@dump(session()->all())--}}
             {{--@dump(\Illuminate\Support\Facades\Context::allHidden())--}}

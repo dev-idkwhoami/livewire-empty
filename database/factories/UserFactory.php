@@ -29,6 +29,17 @@ class UserFactory extends Factory
             'email_verified_at' => now(),
             'password' => static::$password ??= Hash::make('password'),
             'remember_token' => Str::random(10),
+            'preferences' => [
+                'theme' => fake()->randomElement(['light', 'dark']),
+                'locale' => fake()->randomElement(['en', 'de']),
+                'timezone' => fake()->timezone(),
+                'last_login' => fake()->dateTimeBetween('-1 week', 'now')->format('Y-m-d H:i:s'),
+                'pagination' => [
+                    'posts' => fake()->numberBetween(5, 50),
+                    'comments' => fake()->numberBetween(5, 50),
+                    'users' => fake()->numberBetween(5, 50),
+                ]
+            ],
         ];
     }
 
