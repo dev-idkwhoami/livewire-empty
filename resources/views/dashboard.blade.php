@@ -68,7 +68,7 @@
                                 ->icon('pencil')
                                 ->link()
                                 ->variant('ghost')
-                                ->action(\Idkwhoami\FluxTables\Concretes\Action\RouteAction::make('edit')->route('test.route')->navigate()),
+                                ->operation(Idkwhoami\FluxTables\Concretes\Operation\RouteOperation::make('edit')->route('test.route')->navigate()),
                             Idkwhoami\FluxTables\Abstracts\Action\ModalAction::make('open')
                                 ->label('Open')
                                 ->icon('arrow-top-right-on-square')
@@ -79,15 +79,17 @@
                                 ->visible(fn(\Illuminate\Database\Eloquent\Model $model) => auth()->user()->isNot($model) && !$model->deleted_at)
                                 ->label('Delete')
                                 ->icon('trash-2')
-                                ->action(\Idkwhoami\FluxTables\Concretes\Action\DeleteAction::class),
+                                ->operation(Idkwhoami\FluxTables\Concretes\Operation\DeleteOperation::make('delete')),
                             Idkwhoami\FluxTables\Abstracts\Action\DirectAction::make('restore')
                                 ->visible(fn(\Illuminate\Database\Eloquent\Model $model) => auth()->user()->isNot($model) && $model->deleted_at)
                                 ->label('Restore')
                                 ->icon('rotate-ccw')
-                                ->action(\Idkwhoami\FluxTables\Concretes\Action\RestoreAction::class),
+                                ->operation(Idkwhoami\FluxTables\Concretes\Operation\RestoreOperation::make('restore')),
                         ]),
                 ];
             @endphp
+
+            @dump(session()->all())
 
             <livewire:flux-simple-table page-name="up" create="create-user" title="Users" :model="\App\Models\User::class" :default-toggled-columns="['created']" :$filters :$columns />
 

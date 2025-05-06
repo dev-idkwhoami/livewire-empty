@@ -1060,7 +1060,7 @@
             "dist": {
                 "type": "path",
                 "url": "E:/PHP/Opensource/flux-tables",
-                "reference": "e2e20342ce1a806cecf433f23de97f2019d60c49"
+                "reference": "74d27c1dd4a6008ffd8300c57df5788277976a45"
             },
             "require": {
                 "livewire/flux": "^2.0",
