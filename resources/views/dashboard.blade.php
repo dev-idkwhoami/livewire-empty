@@ -117,6 +117,7 @@
                 $columns = [
                     \Idkwhoami\FluxTables\Concretes\Column\TextColumn::make('name')
                         ->label('Title')
+                        ->searchable()
                         ->property('name'),
                     \Idkwhoami\FluxTables\Concretes\Column\TextColumn::make('author')
                         ->label('Author')
@@ -135,7 +136,7 @@
                 ];
             @endphp
 
-            {{--<livewire:flux-simple-table page-name="pp" title="Posts" :model="\App\Models\Post::class" :$filters :$columns />--}}
+            <livewire:flux-simple-table search-name="test" page-name="pp" title="Posts" :model="\App\Models\Post::class" :$filters :$columns />
 
             {{--@dump(session()->all())--}}
             {{--@dump(\Illuminate\Support\Facades\Context::allHidden())--}}
