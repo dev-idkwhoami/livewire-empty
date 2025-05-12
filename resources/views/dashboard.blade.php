@@ -18,6 +18,7 @@
 
                 $filters = [
                     \Idkwhoami\FluxTables\Concretes\Filter\DeletedFilter::make('deleted')
+                        ->visible(fn(\Idkwhoami\FluxTables\Abstracts\Table\Table $table) => $table->getColumn('deleted')->shouldBeVisible($table))
                         ->label('Deletion State')
                         ->default(\Idkwhoami\FluxTables\Enums\DeletionState::WithoutDeleted->value),
                     \Idkwhoami\FluxTables\Concretes\Filter\DateRangeFilter::make('created')
@@ -68,13 +69,14 @@
                         ->label('Banned')
                         ->property('banned'),
                     \Idkwhoami\FluxTables\Concretes\Column\DatetimeColumn::make('deleted')
+                        ->visible(false)
                         ->label("Deleted")
                         ->default('n/a')
                         ->property('deleted_at'),
                     \Idkwhoami\FluxTables\Concretes\Column\ActionColumn::make('actions')
                         ->actions([
                             Idkwhoami\FluxTables\Abstracts\Action\DirectAction::make('open')
-                                ->access(fn(\App\Models\User $user, \Illuminate\Database\Eloquent\Model $value) => $user->isNot($value))
+                                ->access(fn(\App\Models\User $user, \App\Models\User $value) => $user->isNot($value))
                                 ->label('Edit')
                                 ->icon('pencil')
                                 ->link()
@@ -85,6 +87,7 @@
                                 ->icon('arrow-top-right-on-square')
                                 ->link()
                                 ->variant('ghost')
+                                ->modelQuery(fn($id) => \App\Models\User::query()->findOrFail($id))
                                 ->component('user.user-delete-confirmation'),
                             Idkwhoami\FluxTables\Abstracts\Action\DirectAction::make('delete')
                                 ->visible(fn(\Illuminate\Database\Eloquent\Model $model) => auth()->user()->isNot($model) && !$model->deleted_at)
@@ -103,6 +106,7 @@
             @endphp
 
             @dump(session()->all())
+            @dump(context()->all())
 
             <livewire:flux-simple-table page-name="up" create="create-user" title="Users" :model="\App\Models\User::class" :default-toggled-columns="['created']" :$filters :$columns />
 

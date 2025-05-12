@@ -14,6 +14,8 @@ class UserDeleteConfirmation extends Component
 {
     use InteractsWithTable;
 
+    public User $model;
+
     public function confirm(): void
     {
         User::query()->findOrFail($this->id)->delete();
