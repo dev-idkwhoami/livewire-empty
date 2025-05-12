@@ -2,31 +2,39 @@
 
 namespace App\Livewire\User;
 
+use App\Livewire\Forms\UserForm;
 use App\Models\User;
-use Flux\Flux;
-use Idkwhoami\FluxTables\Abstracts\Action\ModalAction;
 use Idkwhoami\FluxTables\Traits\InteractsWithTable;
 use Illuminate\Contracts\View\View;
 use Illuminate\Database\Eloquent\Model;
 use Livewire\Component;
 
-class UserDeleteConfirmation extends Component
+class UserEdit extends Component
 {
     use InteractsWithTable;
 
+    public UserForm $form;
     public User $model;
 
-    public function confirm(): void
+    public function mount(): void
     {
-        User::query()->findOrFail($this->id)->delete();
+        $this->form->fill($this->model->toArray());
+    }
 
-        $this->closeModal();
+    public function save(): void
+    {
+        if ($this->form->update($this->model)) {
+            $this->form->fill($this->model->toArray());
+
+            $this->closeModal();
+        }
+
         $this->refreshTable();
     }
 
     public function render(): View
     {
-        return view('livewire.user.user-delete-confirmation');
+        return view('livewire.user.user-edit');
     }
 
     public function retrieveModel(mixed $id): Model

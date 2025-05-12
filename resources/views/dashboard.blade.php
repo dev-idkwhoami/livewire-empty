@@ -34,11 +34,16 @@
                 ];
 
                 $columns = [
-                    \Idkwhoami\FluxTables\Concretes\Column\ComponentColumn::make('name')
+                    \Idkwhoami\FluxTables\Concretes\Column\ComponentColumn::make('name-input')
                         ->label('Username')
                         ->sortable()
                         ->searchable()
                         ->component('columns.user-name-input')
+                        ->property('name'),
+                    \Idkwhoami\FluxTables\Concretes\Column\TextColumn::make('name')
+                        ->label('Username')
+                        ->sortable()
+                        ->searchable()
                         ->property('name'),
                     \Idkwhoami\FluxTables\Concretes\Column\DatetimeColumn::make('created')
                         ->humanReadable()
@@ -75,13 +80,14 @@
                         ->property('deleted_at'),
                     \Idkwhoami\FluxTables\Concretes\Column\ActionColumn::make('actions')
                         ->actions([
-                            Idkwhoami\FluxTables\Abstracts\Action\DirectAction::make('open')
+                            Idkwhoami\FluxTables\Abstracts\Action\ModalAction::make('open')
                                 ->access(fn(\App\Models\User $user, \App\Models\User $value) => $user->isNot($value))
                                 ->label('Edit')
                                 ->icon('pencil')
                                 ->link()
                                 ->variant('ghost')
-                                ->operation(Idkwhoami\FluxTables\Concretes\Operation\RouteOperation::make('edit')->route('test.route')->navigate()),
+                                ->modelQuery(fn($id) => \App\Models\User::query()->findOrFail($id))
+                                ->component('user.user-edit'),
                             Idkwhoami\FluxTables\Abstracts\Action\ModalAction::make('open')
                                 ->label('Open')
                                 ->icon('arrow-top-right-on-square')

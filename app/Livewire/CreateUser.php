@@ -2,35 +2,28 @@
 
 namespace App\Livewire;
 
+use App\Livewire\Forms\UserForm;
 use App\Models\User;
-use Flux\Flux;
 use Idkwhoami\FluxTables\Traits\HasTableCreateComponent;
 use Illuminate\Contracts\View\View;
-use Livewire\Attributes\Validate;
 use Livewire\Component;
 
 class CreateUser extends Component
 {
     use HasTableCreateComponent;
 
-    #[Validate('required|string|max:255|unique:users,name')]
-    public string $name = '';
-    #[Validate('required|string|email|max:255|unique:users,email')]
-    public string $email = '';
+    public UserForm $form;
+    public User $model;
 
     public function create(): void
     {
-        $this->validate();
+        $user = $this->form->store();
 
-        Flux::modal($this->modal)->close();
-
-        User::create([
-            'name' => $this->name,
-            'email' => $this->email,
-            'password' => 'password'
-        ]);
-
-        $this->redirect('/dashboard');
+        if ($user) {
+            $this->reset('form');
+            $this->closeModal();
+            $this->refreshTable();
+        }
     }
 
     public function render(): View
