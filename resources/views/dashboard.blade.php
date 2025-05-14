@@ -80,6 +80,16 @@
                         ->property('deleted_at'),
                     \Idkwhoami\FluxTables\Concretes\Column\ActionColumn::make('actions')
                         ->actions([
+                            Idkwhoami\FluxTables\Abstracts\Action\DirectAction::make('route-test')
+                                ->label("Go to Route")
+                                ->variant('ghost')
+                                ->operation(
+                                    Idkwhoami\FluxTables\Concretes\Operation\RouteOperation::make('test-route-operation')
+                                        ->target('_blank')
+                                        ->modelQuery(fn($id) => \App\Models\User::query()->findOrFail($id))
+                                        ->route(fn (\App\Models\User $user) => route('test.route', ['name' => $user->name]))
+                                    )
+                                ->link(),
                             Idkwhoami\FluxTables\Abstracts\Action\ModalAction::make('open')
                                 ->access(fn(\App\Models\User $user, \App\Models\User $value) => $user->isNot($value))
                                 ->label('Edit')
@@ -112,9 +122,11 @@
             @endphp
 
             @dump(session()->all())
-            @dump(context()->all())
+            @dump(context()->allHidden())
 
-            <livewire:flux-simple-table page-name="up" create="create-user" title="Users" :model="\App\Models\User::class" :default-toggled-columns="['created']" :$filters :$columns />
+            <livewire:flux-simple-table page-name="up" create="create-user" title="Users"
+                                        :model="\App\Models\User::class" :default-toggled-columns="['created']"
+                                        :$filters :$columns/>
 
             {{--@dump(\Illuminate\Support\Facades\Context::allHidden())--}}
         </div>

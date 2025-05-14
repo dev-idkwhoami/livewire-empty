@@ -11,7 +11,7 @@ Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])
     ->name('dashboard');
 
-Route::get('test', fn() => sleep(3) . ": tested.")->name('test.route');
+Route::get('test/{name}', fn(string $name) => "$name: tested.")->name('test.route');
 
 Route::middleware(['auth'])->group(function () {
     Route::redirect('settings', 'settings/profile');
