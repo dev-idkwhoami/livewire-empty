@@ -44,6 +44,8 @@ class UserForm extends Form
 
     public function store(): ?Model
     {
+        $this->validatedForAction();
+
         return User::query()->create(array_merge(
             $this->validatedForAction(),
             ['password' => Hash::make('password')]
