@@ -19,5 +19,8 @@ class DatabaseSeeder extends Seeder
             'name' => 'Developer',
             'email' => 'test@livewire.test',
         ]);
+
+        // Call the PostCommentSeeder
+        $this->call(PostCommentSeeder::class);
     }
 }
