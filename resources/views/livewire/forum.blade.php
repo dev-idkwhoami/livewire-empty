@@ -95,6 +95,7 @@
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
                                 </svg>
                                 Generate Comment
+                                <flux:icon.loading wire:loading wire:target="generateComment" class="ml-2 h-4 w-4" />
                             </button>
                         </div>
 

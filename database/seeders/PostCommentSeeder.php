@@ -66,6 +66,7 @@ class PostCommentSeeder extends Seeder
                 'title' => $postData['title'],
                 'content' => $postData['content'],
                 'category' => $category,
+                'created_at' => now()->subDays(rand(1, 30)),
             ]);
 
             // Create comments for this post
@@ -74,6 +75,7 @@ class PostCommentSeeder extends Seeder
                     'post_id' => $post->id,
                     'user_id' => $users->random()->id,
                     'content' => $commentData['content'],
+                    'created_at' => $post->created_at->addDays(rand(1, 3)),
                 ]);
             }
         }
