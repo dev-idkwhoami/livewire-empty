@@ -1,7 +1,15 @@
 <div class="max-w-5xl mx-auto px-4 py-8">
     <!-- Forum Header -->
     <div class="flex items-center justify-between mb-8">
-        <h1 class="text-3xl font-bold bg-gradient-to-r from-indigo-400 to-purple-500 bg-clip-text text-transparent">Forum Discussions</h1>
+        <div class="flex">
+            <flux:input.group>
+                <flux:input icon="magnifying-glass" placeholder="Search..." wire:model.live="search" />
+                <flux:select class="max-w-fit" wire:model.live="semantic">
+                    <flux:select.option value="true">Semantic</flux:select.option>
+                    <flux:select.option value="false">Match</flux:select.option>
+                </flux:select>
+            </flux:input.group>
+        </div>
         <div class="flex items-center space-x-4">
             <div class="bg-indigo-600/10 dark:bg-indigo-500/20 px-3 py-1 rounded-full">
                 <span class="text-indigo-600 dark:text-indigo-300 font-medium">{{ count($this->posts) }} Posts</span>

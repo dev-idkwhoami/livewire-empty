@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 use Livewire\Attributes\Computed;
+use Livewire\Attributes\Locked;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -17,20 +18,29 @@ class Forum extends Component
 {
     use WithPagination;
 
+    public $semantic = false;
+    public $search = '';
+
     protected $listeners = [
         'reloadPosts' => '$refresh',
     ];
 
+    #[Locked]
     protected $categories = [
         'video games',
         'technology',
         'animals',
     ];
 
+    public function updatedSearch(): void
+    {
+        $this->resetPage();
+    }
+
     #[Computed]
     public function posts(): LengthAwarePaginator
     {
-        return Post::query()
+        $baseQuery = Post::query()
             ->with([
                 'author',
                 'comments',
@@ -39,7 +49,23 @@ class Forum extends Component
             ->withCount([
                 'comments',
             ])
-            ->latest()
+            ->latest();
+
+        if(!empty($this->search)) {
+            if (!$this->semantic) {
+                $baseQuery->whereAny([
+                    'title',
+                    'content',
+                    'category',
+                ], 'ILIKE', "%{$this->search}%");
+            }
+
+            if($this->semantic) {
+
+            }
+        }
+
+        return $baseQuery
             ->paginate(2);
     }
 
@@ -73,7 +99,7 @@ class Forum extends Component
         // Find the post
         $post = Post::query()->findOrFail($postId);
 
-        if (! $post) {
+        if (!$post) {
             session()->flash('error', 'Post not found.');
 
             return;
