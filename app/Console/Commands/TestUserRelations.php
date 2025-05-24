@@ -29,12 +29,13 @@ class TestUserRelations extends Command
         // Find a user with posts
         $user = User::whereHas('posts')->first();
 
-        if (!$user) {
+        if (! $user) {
             // If no user with posts is found, get the first user
             $user = User::first();
 
-            if (!$user) {
+            if (! $user) {
                 $this->error('No users found');
+
                 return 1;
             }
 
@@ -51,9 +52,9 @@ class TestUserRelations extends Command
             $this->info("  Comments count: {$post->comments->count()}");
 
             if ($post->comments->count() > 0) {
-                $this->info("  Comments:");
+                $this->info('  Comments:');
                 foreach ($post->comments as $comment) {
-                    $this->info("  - ID: {$comment->id}, Content: " . substr($comment->content, 0, 50) . "...");
+                    $this->info("  - ID: {$comment->id}, Content: ".substr($comment->content, 0, 50).'...');
                 }
             }
         }

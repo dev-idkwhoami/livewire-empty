@@ -14,5 +14,10 @@ export default defineConfig({
     ],
     server: {
         cors: true,
+        watch: {
+            ignored: [
+                './vendor/**/vendor/'
+            ]
+        }
     },
 });
