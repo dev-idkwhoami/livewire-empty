@@ -12,7 +12,7 @@
             </div>
         </div>
         <div class="relative h-full flex-1 rounded-xl border border-neutral-200 dark:border-neutral-700 p-4">
-            <livewire:forum />
+            {{--<livewire:forum />--}}
         </div>
     </div>
 </x-layouts.app>
