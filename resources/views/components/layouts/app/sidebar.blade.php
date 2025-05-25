@@ -127,8 +127,6 @@
 
         {{ $slot }}
 
-        {{--@fluxScripts--}}
-        {!! app('flux')->scripts(null) !!}
-        {!! \Livewire\Mechanisms\FrontendAssets\FrontendAssets::scripts() !!}
+        @fluxScripts
     </body>
 </html>

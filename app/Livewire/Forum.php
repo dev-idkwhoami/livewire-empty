@@ -61,7 +61,7 @@ class Forum extends Component
             }
 
             if($this->semantic) {
-
+                //
             }
         }
 
