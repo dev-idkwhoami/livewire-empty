@@ -13,6 +13,7 @@ use Livewire\Attributes\Computed;
 use Livewire\Attributes\Locked;
 use Livewire\Component;
 use Livewire\WithPagination;
+use Quero\Models\Embedding;
 
 class Forum extends Component
 {
@@ -27,9 +28,7 @@ class Forum extends Component
 
     #[Locked]
     protected $categories = [
-        'video games',
-        'technology',
-        'animals',
+        'food'
     ];
 
     public function updatedSearch(): void
@@ -61,7 +60,10 @@ class Forum extends Component
             }
 
             if($this->semantic) {
-                //
+                dump(Embedding::lookup($this->search));
+
+                $baseQuery = Embedding::queryLookup($this->search, $baseQuery);
+                $baseQuery->dumpRawSql();
             }
         }
 

@@ -28,7 +28,7 @@
     </div>
 
     <!-- Posts List -->
-    <div class="space-y-6" wire:poll.10s>
+    <div class="space-y-6"{{-- wire:poll.10s--}}>
         <!-- Loading Indicator -->
         <div wire:loading wire:target="posts" x-transition.opacity class="flex justify-center py-4">
             <div class="inline-flex items-center px-4 py-2 font-semibold leading-6 text-sm rounded-md text-indigo-500 bg-indigo-100 dark:bg-indigo-900/30 dark:text-indigo-300">
