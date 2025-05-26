@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
+use App\Livewire\UserCreationWizard;
 use Illuminate\Support\ServiceProvider;
+use Livewire\Livewire;
 
 class AppServiceProvider extends ServiceProvider
 {

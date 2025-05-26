@@ -8,8 +8,19 @@
         "framework"
     ],
     "license": "MIT",
+    "repositories": {
+        "flux-wizards": {
+            "type": "path",
+            "url": "E:\\PHP\\Opensource\\flux-wizards"
+        },
+        "flux-pro": {
+            "type": "composer",
+            "url": "https://composer.fluxui.dev"
+        }
+    },
     "require": {
         "php": "^8.2",
+        "idkwhoami/flux-wizards": "*",
         "laravel/framework": "^12.0",
         "laravel/tinker": "^2.10.1",
         "livewire/flux": "^2.0",
