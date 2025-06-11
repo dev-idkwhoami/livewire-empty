@@ -11,7 +11,7 @@
     "repositories": {
         "flux-wizards": {
             "type": "path",
-            "url": "E:\\PHP\\Opensource\\flux-wizards"
+            "url": "A:\\flux-wizards"
         },
         "flux-pro": {
             "type": "composer",

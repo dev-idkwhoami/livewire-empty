@@ -1,25 +1,31 @@
+@php
+    /** @var \Illuminate\Contracts\Support\MessageBag $errors*/
+    dump($errors)
+@endphp
 <div class="step-content space-y-4">
-    <x-flux::input
+    <flux:input
         label="Email"
-        id="account.email"
+        id="email"
         type="email"
-        wire:model="data.account.email"
-        error="{{ $errors->first('account.email') }}"
+        wire:model.live="data.account.email"
     />
 
-    <x-flux::input
+    <flux:input
         label="Password"
-        id="account.password"
+        id="password"
         type="password"
-        wire:model="data.account.password"
-        error="{{ $errors->first('account.password') }}"
+        wire:model.live="data.account.password"
     />
 
-    <x-flux::input
-        label="Confirm Password"
-        id="account.password_confirmation"
-        type="password"
-        wire:model="data.account.password_confirmation"
-        error="{{ $errors->first('account.password_confirmation') }}"
-    />
+    <flux:field>
+        <flux:label>
+            Confirm Password
+        </flux:label>
+        <flux:input
+            id="password_confirmation"
+            type="password"
+            wire:model.live="data.account.password_confirmation"
+        />
+        <flux:error name="data.account.password_confirmation" />
+    </flux:field>
 </div>
