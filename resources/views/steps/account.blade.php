@@ -1,7 +1,3 @@
-@php
-    /** @var \Illuminate\Contracts\Support\MessageBag $errors*/
-    dump($errors)
-@endphp
 <div class="step-content space-y-4">
     <flux:input
         label="Email"
