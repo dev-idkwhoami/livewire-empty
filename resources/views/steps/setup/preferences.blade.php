@@ -2,13 +2,13 @@
     <flux:checkbox
         label="Enable notifications"
         id="notifications"
-        wire:model.blur="data.preferences.notifications"
+        wire:model.live="data.preferences.notifications"
     />
 
     <flux:select
         label="Theme"
         id="theme"
-        wire:model.blur="data.preferences.theme"
+        wire:model.live="data.preferences.theme"
     >
         <option value="">Select a theme</option>
         <option value="light">Light</option>

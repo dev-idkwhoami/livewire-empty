@@ -15,6 +15,7 @@ class UserCreationWizard extends Component
     {
         // Create a new wizard with initial data using the fluent API
         return Wizard::make('user-registration')
+            ->directory('steps.setup')
             ->root(
                 Step::make('account')
                     ->label('Account')
@@ -27,7 +28,7 @@ class UserCreationWizard extends Component
                         Step::make('profile')
                             ->label('Profile Information')
                             ->rules([
-                                'name' => 'required|string|max:255',
+                                'name' => 'required|string|max:255|min:3',
                                 'bio' => 'nullable|string|max:1000',
                             ])
                             ->children([
