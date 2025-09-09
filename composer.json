@@ -13,7 +13,8 @@
         "laravel/framework": "^12.0",
         "laravel/tinker": "^2.10.1",
         "livewire/flux": "^2.3.2",
-        "livewire/flux-pro": "^2.3.2"
+        "livewire/flux-pro": "^2.3.2",
+        "idkwhoami/flux-tables": "*"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",
@@ -80,6 +81,10 @@
     "minimum-stability": "stable",
     "prefer-stable": true,
     "repositories": {
+        "flux-tables": {
+            "type": "path",
+            "url": "E:\\PHP\\Opensource\\flux-tables"
+        },
         "flux-pro": {
             "type": "composer",
             "url": "https://composer.fluxui.dev"

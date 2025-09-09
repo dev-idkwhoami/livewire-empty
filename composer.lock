@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f03ac65d0afde5820a558a79353cea96",
+    "content-hash": "e8aadff9c420f4f1b6fda3adf4322f67",
     "packages": [
         {
             "name": "brick/math",
@@ -1052,6 +1052,85 @@
                 }
             ],
             "time": "2025-08-22T14:27:06+00:00"
+        },
+        {
+            "name": "idkwhoami/flux-tables",
+            "version": "2.2.20",
+            "dist": {
+                "type": "path",
+                "url": "E:/PHP/Opensource/flux-tables",
+                "reference": "760df3c40cedbae385a84b31860a40955757217b"
+            },
+            "require": {
+                "livewire/flux": "^2.0",
+                "livewire/flux-pro": "^2.0",
+                "php": "^8.3"
+            },
+            "require-dev": {
+                "illuminate/support": "^11.41",
+                "larastan/larastan": "^2.9",
+                "laravel/boost": "^1.1",
+                "laravel/pint": "^1.20",
+                "nunomaduro/collision": "^8.1.1||^7.10.0",
+                "orchestra/testbench": "^9.9",
+                "pestphp/pest": "^4.0",
+                "pestphp/pest-plugin-arch": "^4.0",
+                "pestphp/pest-plugin-laravel": "^4.0",
+                "phpstan/extension-installer": "^1.3",
+                "phpstan/phpstan": "^1.12",
+                "phpstan/phpstan-deprecation-rules": "^1.1",
+                "phpstan/phpstan-phpunit": "^1.3"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Idkwhoami\\FluxTables\\FluxTablesServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Idkwhoami\\FluxTables\\": "src/"
+                }
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "Idkwhoami\\FluxTables\\Tests\\": "tests/"
+                }
+            },
+            "scripts": {
+                "pretty": [
+                    "./vendor/bin/pint --dirty"
+                ],
+                "pint": [
+                    "./vendor/bin/pint"
+                ],
+                "analyse": [
+                    "./vendor/bin/phpstan analyse --memory-limit 4G"
+                ],
+                "test": [
+                    "./vendor/bin/pest"
+                ]
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "idkwhoami"
+                }
+            ],
+            "description": "This package provides a reusable, configurable table livewire component styled using Flux",
+            "homepage": "https://github.com/idkwhoami/flux-tables",
+            "keywords": [
+                "Idkwhoami",
+                "flux-tables",
+                "laravel"
+            ],
+            "transport-options": {
+                "relative": false
+            }
         },
         {
             "name": "laravel/framework",
