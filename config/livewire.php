@@ -32,8 +32,8 @@ return [
     |---------------------------------------------------------------------------
     | Layout
     |---------------------------------------------------------------------------
-    | The view that will be used as the layout when rendering a single component
-    | as an entire page via `Route::get('/post/create', CreatePost::class);`.
+    | The view that will be used as the layout when rendering a single component as
+    | an entire page via `Route::livewire('/post/create', CreatePost::class);`.
     | In this case, the view returned by CreatePost will render into $slot.
     |
     */
@@ -65,7 +65,7 @@ return [
 
     'temporary_file_upload' => [
         'disk' => null,        // Example: 'local', 's3'              | Default: 'default'
-        'rules' => ['file'],       // Example: ['file', 'mimes:png,jpg']  | Default: ['required', 'file', 'max:12288'] (12MB)
+        'rules' => null,       // Example: ['file', 'mimes:png,jpg']  | Default: ['required', 'file', 'max:12288'] (12MB)
         'directory' => null,   // Example: 'tmp'                      | Default: 'livewire-tmp'
         'middleware' => null,  // Example: 'throttle:5,1'             | Default: 'throttle:60,1'
         'preview_mimes' => [   // Supported file types for temporary pre-signed file URLs...
@@ -75,16 +75,38 @@ return [
         ],
         'max_upload_time' => 5, // Max duration (in minutes) before an upload is invalidated...
         'cleanup' => true, // Should cleanup temporary uploads older than 24 hrs...
+    ],
 
-        // Chunked upload configuration
-        'chunking' => [
-            'enabled' => true,                   // Enable/disable chunked uploads
-            'threshold' => 25 * 1024 * 1024,     // Files larger than 128MB get chunked
-            'chunk_size' => 2 * 1024 * 1024,     // 16MB per chunk
-            'max_chunks' => 128,                  // Maximum allowed chunks per file
-            'concurrent_chunks' => 10,             // Chunks uploaded simultaneously (if you are using sqlite as the database, this should be set to 1)
-            'timeout' => 30,                      // Seconds before chunk upload times out
-        ],
+    /*
+    |---------------------------------------------------------------------------
+    | Chunked File Uploads
+    |---------------------------------------------------------------------------
+    |
+    | For large file uploads, Livewire can automatically use chunked uploads
+    | which split files into smaller pieces for improved reliability and
+    | resumability. Configure chunked upload behavior below:
+    |
+    */
+
+    'chunked_uploads' => [
+        'enabled' => true,        // Enable chunked uploads for large files
+        'min_chunks' => 2,         // Minimum number of chunks required to enable chunking
+        'max_chunk_size_kb' => 65536, // Maximum chunk size in KB (64MB default)
+        'session_timeout' => 3600, // Chunk session timeout in seconds (1 hour)
+        'max_concurrent_chunks' => 3, // Maximum number of chunks to upload concurrently
+        'retry_attempts' => 3,     // Number of retry attempts for failed chunks
+
+        /*
+        | Chunked Upload Validation Rules
+        |
+        | These validation rules are applied specifically to chunked uploads.
+        | They are separate from the regular file upload rules to allow for
+        | larger files that require chunking. Set higher size limits here
+        | than in the regular temporary_file_upload rules.
+        |
+        | Example: 'rules' => ['required', 'file', 'max:1048576'], // 1GB limit
+        */
+        'rules' => null, // Default: ['required', 'file', 'max:1048576'] (1GB)
     ],
 
     /*

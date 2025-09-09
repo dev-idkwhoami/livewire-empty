@@ -15,7 +15,6 @@
             <div class="grid grid-cols-2 gap-6 p-12">
 
                 <livewire:upload-single />
-
                 <livewire:upload-multiple />
 
             </div>
