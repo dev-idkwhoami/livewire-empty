@@ -25,7 +25,7 @@
 
     <flux:sidebar.spacer/>
 
-    <flux:sidebar variant="outline">
+    <flux:sidebar.nav variant="outline">
         <flux:sidebar.item icon="folder-git-2" href="https://github.com/laravel/livewire-starter-kit" target="_blank">
             {{ __('Repository') }}
         </flux:sidebar.item>
@@ -33,7 +33,7 @@
         <flux:sidebar.item icon="book-open-text" href="https://laravel.com/docs/starter-kits#livewire" target="_blank">
             {{ __('Documentation') }}
         </flux:sidebar.item>
-    </flux:sidebar>
+    </flux:sidebar.nav>
 
     <!-- Desktop User Menu -->
     <flux:dropdown class="hidden lg:block" position="bottom" align="start">
