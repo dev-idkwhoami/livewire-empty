@@ -12,7 +12,7 @@
             <flux:input
                 name="email"
                 :label="__('Email address')"
-                :value="old('email')"
+                value="{{ 'test@example.com' }}"
                 type="email"
                 required
                 autofocus
@@ -26,6 +26,7 @@
                     name="password"
                     :label="__('Password')"
                     type="password"
+                    value="password"
                     required
                     autocomplete="current-password"
                     :placeholder="__('Password')"
